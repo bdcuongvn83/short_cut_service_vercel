@@ -26,7 +26,7 @@ app.post("/api/shorturl", (req, res) => {
   //http://www.example.com
   //var regex = /^\d{4}-\d{2}-\d{2}$/;
   //const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2})?$/i;
-  const regex = /^(https:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
+  const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
 
   console.log(`url:${url}`);
 
