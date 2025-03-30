@@ -25,15 +25,17 @@ app.post("/api/shorturl", (req, res) => {
   const { url } = req.body;
   //http://www.example.com
   //var regex = /^\d{4}-\d{2}-\d{2}$/;
-  // const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2})?$/i;
-  // console.log(`url:${url}`);
+  //const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2})?$/i;
+  const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2})?$/i;
 
-  // let valid = regex.test(url);
-  // console.log(`regex.test(url):${valid}`);
+  console.log(`url:${url}`);
 
-  // if (!valid) {
-  //   return res.status(400).json({ error: "invalid url" });
-  // }
+  let valid = regex.test(url);
+  console.log(`regex.test(url):${valid}`);
+
+  if (!valid) {
+    return res.status(400).json({ error: "invalid url" });
+  }
 
   const shortUrl = shortid.generate();
   console.log(`shortUrl:${0}`, shortUrl);
