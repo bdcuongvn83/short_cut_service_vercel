@@ -23,6 +23,17 @@ const urlDatabase = {};
 app.post("/api/shorturl", (req, res) => {
   console.log(`body:${0}`, req.body);
   const { url } = req.body;
+  //http://www.example.com
+  //var regex = /^\d{4}-\d{2}-\d{2}$/;
+  var regex = /^https:(\/\/)[^.]+\.[^.]+$/;
+  console.log(`url:${url}`);
+  let valid = regex.test(url);
+  console.log(`regex.test(url):${valid}`);
+
+  if (!valid) {
+    return res.status(400).json({ error: "invalid url" });
+  }
+
   const shortUrl = shortid.generate();
   console.log(`shortUrl:${0}`, shortUrl);
   console.log(`originalUrl:${0}`, url);
