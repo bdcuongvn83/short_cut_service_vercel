@@ -4,13 +4,13 @@ const app = express();
 
 app.use(express.json());
 
-const urlDatabase = {}; // Map lưu trữ các shortUrl và original_url
+const urlDatabase = {}; // Lưu trữ các shortUrl và original_url
 
 // POST: /api/shorturl
 app.post("/api/shorturl", (req, res) => {
   const { url } = req.body;
 
-  // Kiểm tra tính hợp lệ của URL (bắt đầu với http:// hoặc https://)
+  // Kiểm tra tính hợp lệ của URL
   const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
 
   if (!regex.test(url)) {
