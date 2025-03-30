@@ -20,7 +20,7 @@ app.get("/", function (req, res) {
 
 const urlDatabase = {};
 
-app.post("/api/shorten", (req, res) => {
+app.post("/api/shorturl", (req, res) => {
   console.log(`body:${0}`, req.body);
   const { originalUrl } = req.body;
   const shortUrl = shortid.generate();
@@ -37,7 +37,7 @@ app.post("/api/shorten", (req, res) => {
   return res.status(201).json(response);
 });
 
-app.get("/api/shorten/:short_url?", (req, res) => {
+app.get("/api/shorturl/:short_url?", (req, res) => {
   console.log(`short_param:${0}`, req.params);
 
   let short_url = req.params.short_url;
