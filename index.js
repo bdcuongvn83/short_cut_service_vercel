@@ -22,17 +22,17 @@ const urlDatabase = {};
 
 app.post("/api/shorturl", (req, res) => {
   console.log(`body:${0}`, req.body);
-  const { originalUrl } = req.body;
+  const { url } = req.body;
   const shortUrl = shortid.generate();
   console.log(`shortUrl:${0}`, shortUrl);
-  console.log(`originalUrl:${0}`, originalUrl);
+  console.log(`originalUrl:${0}`, url);
 
   const response = {
-    original_url: originalUrl,
+    original_url: url,
     short_url: shortUrl,
   };
   //save key to map
-  urlDatabase[shortUrl] = originalUrl;
+  urlDatabase[shortUrl] = url;
 
   return res.status(201).json(response);
 });
