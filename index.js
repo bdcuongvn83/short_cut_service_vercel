@@ -1,8 +1,17 @@
 import express from "express";
 import shortid from "shortid";
+import cors from "cors";
+import bodyParser from "body-parser";
+
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const urlDatabase = {}; // Lưu trữ các shortUrl và original_url
 
@@ -10,12 +19,15 @@ const urlDatabase = {}; // Lưu trữ các shortUrl và original_url
 app.post("/api/shorturl", (req, res) => {
   const { url } = req.body;
 
-  // Kiểm tra tính hợp lệ của URL
-  const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
+  console.log(req.body.url); // Kiểm tra URL nhận được
+  res.json({ message: "URL received-TODOOOOOOOOOOOOOOOOOOOO" });
 
-  if (!regex.test(url)) {
-    return res.status(400).json({ error: "invalid url" });
-  }
+  // Kiểm tra tính hợp lệ của URL
+  //const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
+
+  // if (!regex.test(url)) {
+  //   return res.json({ error: "invalid url" });
+  // }
 
   // Tạo short URL mới
   const shortUrl = shortid.generate();
@@ -36,7 +48,7 @@ app.get("/api/shorturl/:short_url", (req, res) => {
 
   // Kiểm tra xem short_url có tồn tại trong map không
   if (!urlDatabase[short_url]) {
-    return res.status(404).json({ error: "invalid url" });
+    return res.json({ error: "invalid url" });
   }
 
   // Lấy original_url từ map và thực hiện redirect
