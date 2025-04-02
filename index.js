@@ -20,6 +20,7 @@ app.post("/api/shorturl", (req, res) => {
   const { url } = req.body;
 
   console.log(req.body.url); // Kiểm tra URL nhận được
+  res.json(req.body);
   res.json({ message: "URL received-TODOOOOOOOOOOOOOOOOOOOO" });
 
   // Kiểm tra tính hợp lệ của URL
