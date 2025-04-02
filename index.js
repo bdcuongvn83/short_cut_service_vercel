@@ -20,15 +20,16 @@ app.post("/api/shorturl", (req, res) => {
   const { url } = req.body;
 
   console.log(req.body.url); // Kiểm tra URL nhận được
-  res.json(req.body);
-  res.json({ message: "URL received-TODOOOOOOOOOOOOOOOOOOOO" });
+  // res.json(req.body);
+  // res.json({ message: "URL received-TODOOOOOOOOOOOOOOOOOOOO" });
 
   // Kiểm tra tính hợp lệ của URL
-  //const regex = /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,6}(\.[a-z]{2,})?$/i;
+  const regex =
+    /^(https?:\/\/)(www\.)?[\w-]+\.[a-z]{2,}(\.[a-z]{2,})*(\/[^\s]*)?$/i;
 
-  // if (!regex.test(url)) {
-  //   return res.json({ error: "invalid url" });
-  // }
+  if (!regex.test(url)) {
+    return res.json({ error: "invalid url" });
+  }
 
   // Tạo short URL mới
   const shortUrl = shortid.generate();
